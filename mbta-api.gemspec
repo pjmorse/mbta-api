@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'mbta/api/version'
+require 'mbta/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "mbta-api"
-  spec.version       = Mbta::Api::VERSION
+  spec.version       = Mbta::VERSION
   spec.authors       = ["Parker Morse"]
   spec.email         = ["flashesofpanic@gmail.com"]
 
@@ -19,5 +19,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec"
-  spec.add_dependency "httparty"
+  spec.add_dependency "httparty" # Consider Excon?
 end
