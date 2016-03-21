@@ -1,5 +1,12 @@
-require "mbta/api/version"
-require 'httparty'
+require "mbta/version"
+require "mbta/routes"
+require "mbta/stops"
+require "mbta/schedule"
+require "mbta/predictions"
+require "mbta/vehicles"
+require "mbta/alerts"
+require "mbta/server"
+require "excon"
 
 module Mbta
   class Api
@@ -44,6 +51,7 @@ module Mbta
         api_key:  MBTA_API_KEY ? MBTA_API_KEY : nil
       }
       @config = defaults.merge(config).freeze
+      @connection = Excon.new(@config[:base_uri])
     end
 
     def method_missing(api_method, *args)
@@ -54,10 +62,14 @@ module Mbta
   end
 
   class APIError < StandardError
-    # The API returned an error or other unexpected result
+    def message
+      'The API returned an error or other unexpected result'
+    end
   end
 
   class MethodNotImplemented < StandardError
-    # We intend for this to work sometime, but right now it doesn't
+    def message
+      "We intend for this to work sometime, but right now it doesn't"
+    end
   end
 end

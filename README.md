@@ -1,10 +1,9 @@
 # mbta-api
 
-Ruby gem to wrap the MBTA v2 "realtime" API
+Ruby gem to wrap [the MBTA v2 "realtime" API](http://realtime.mbta.com/portal)
 
 ## Plan
 
-* An API object will translate method calls (messages) into requests to the MBTA API.
 * The API object will return Ruby objects (POROs) representing the responses from the MBTA API.
   - Those objects will have public methods to return both the raw JSON they were created from, and a simplified JSON serialization; this latter form can be overloaded to customize JSON delivered to hypothetical clients.
   - The objects will also support additional related queries back to the API (e.g. a query for nearby stations will return Station objects, which could in turn be queried for lines and/or next trains.)
@@ -13,7 +12,9 @@ Ruby gem to wrap the MBTA v2 "realtime" API
 
 ## TODO
 
-* [ ] API object: initialization, connections, API key setup
+* [x] API object: initialization, connections, API key setup
+* [x] Stub API method calls
+* [ ] Build out stubs
 * [ ] Map objects needed
 * [ ] Iterate over objects to map attributes and methods needed
 

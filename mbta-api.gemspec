@@ -19,5 +19,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec"
-  spec.add_dependency "httparty" # Consider Excon?
+  spec.add_dependency "excon"
 end
