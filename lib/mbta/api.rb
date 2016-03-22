@@ -51,7 +51,7 @@ module Mbta
         api_key:  MBTA_API_KEY ? MBTA_API_KEY : nil
       }
       @config = defaults.merge(config).freeze
-      @connection = Excon.new(@config[:base_uri])
+      @connection = Excon.new("http://#{@config[:base_uri]}")
     end
 
     def method_missing(api_method, *args)
