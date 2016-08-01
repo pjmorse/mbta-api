@@ -1,9 +1,9 @@
 module Mbta
   module Server
     def servertime
-      # Returns the time at the server, in epoch time
-      # TODO: Parse response JSON
-      return @connection.get(path: '/servertime', query: { api_key: @config[:api_key], format: @config[:format] })
+      # API responds with the time at the server, in epoch time
+      response = @connection.get(path: "#{@config[:base_uri]}/servertime", query: { api_key: @config[:api_key], format: @config[:format] })
+      return parse_timestamp(JSON.parse(response.body)["server_dt"])
     end
   end
 end
