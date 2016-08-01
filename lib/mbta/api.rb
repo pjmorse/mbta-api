@@ -1,3 +1,4 @@
+# Connection modules
 require "mbta/version"
 require "mbta/routes"
 require "mbta/stops"
@@ -6,7 +7,13 @@ require "mbta/predictions"
 require "mbta/vehicles"
 require "mbta/alerts"
 require "mbta/server"
+
+# Utilities
+require "mbta/times"
 require "excon"
+
+# Response classes
+require "mbta/alert"
 
 module Mbta
   class Api
@@ -31,6 +38,8 @@ module Mbta
                            alertheadersbystop
                            servertime)
 
+    # MBTA_API_KEY = 'wX9NwuHnZU2ToO7GmGR9uw' # Dev key
+
     # Blank Slate
     instance_methods.each do |m|
       undef_method m unless m.to_s =~ /^__|object_id|method_missing|respond_to?|to_s|inspect|kind_of?|should|should_not/
@@ -46,18 +55,27 @@ module Mbta
 
     def initialize(config: {})
       defaults = {
-        base_uri: 'realtime.mbta.com/developer/api/v2',
+        host:     'realtime.mbta.com',
+        base_uri: 'developer/api/v2',
         format:   :json,
-        api_key:  MBTA_API_KEY ? MBTA_API_KEY : nil
+        protocol: 'https',
+        api_key:  defined?(MBTA_API_KEY) ? MBTA_API_KEY : nil
       }
       @config = defaults.merge(config).freeze
-      @connection = Excon.new("http://#{@config[:base_uri]}")
+      @connection = Excon.new("#{@config[:protocol]}://#{@config[:host]}/#{@config[:base_uri]}")
     end
 
     def method_missing(api_method, *args)
     end
 
     def respond_to?(api_method)
+    end
+
+    def default_params
+      {
+        api_key: @config[:api_key],
+        format:  @config[:format]
+      }
     end
   end
 
