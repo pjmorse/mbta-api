@@ -1,5 +1,7 @@
 # mbta-api
 
+[![Code Climate](https://codeclimate.com/github/pjmorse/mbta-api/badges/gpa.svg)](https://codeclimate.com/github/pjmorse/mbta-api)
+
 Ruby gem to wrap [the MBTA v2 "realtime" API](http://realtime.mbta.com/portal)
 
 ## Plan
@@ -43,6 +45,8 @@ It will help me learn the T's API in better detail. Making the API easier to wor
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`.
+
+You will almost certainly benefit from checking out [the API Documentation](http://realtime.mbta.com/Portal/Home/Documents). 
 
 ### See Also
 
