@@ -11,6 +11,7 @@ Ruby gem to wrap [the MBTA v2 "realtime" API](http://realtime.mbta.com/portal)
   - The objects will also support additional related queries back to the API (e.g. a query for nearby stations will return Station objects, which could in turn be queried for lines and/or next trains.)
 * As a commuter rail commuter, I'll start with commuter rail, then subways, then buses
 * The data structure of the wrapper will map as closely to the data returned by the API as practical.
+* When the data returned from the API maps to native Ruby data structures, it will be parsed as such (e.g. when the API returns timestamps, the wrapper will parse to Ruby DateTime objects).
 
 ## TODO
 
